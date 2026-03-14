@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		420460652712EE1D0052B603 /* PockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 420460642712EE1D0052B603 /* PockKit */; };
+		420460682712EE310052B603 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 420460672712EE310052B603 /* Defaults */; };
+		4204606B2712EE4B0052B603 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4204606A2712EE4B0052B603 /* SnapKit */; };
+		422D77D925F51AE000EADDEF /* PomoDoroTimerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D77D825F51AE000EADDEF /* PomoDoroTimerWidget.swift */; };
+		422D780425F525EF00EADDEF /* PomoDoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D780325F525EF00EADDEF /* PomoDoroTimerView.swift */; };
+		4254F8E425F55E8200DD1538 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4254F8E325F55E8200DD1538 /* Media.xcassets */; };
+		4254F92125F5F1DD00DD1538 /* PomoDoroTimerTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4254F92025F5F1DD00DD1538 /* PomoDoroTimerTextLabel.swift */; };
+		4254F93425F637B700DD1538 /* PomoDoroTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4254F93325F637B700DD1538 /* PomoDoroTimerState.swift */; };
+		425AAE64262C1D9000382E24 /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AAE63262C1D9000382E24 /* NSColor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		422D77CC25F51A3900EADDEF /* PockitPomodoro.pock */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PockitPomodoro.pock"; sourceTree = BUILT_PRODUCTS_DIR; };
+		422D77CF25F51A3900EADDEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		422D77D725F51AE000EADDEF /* PockitPomodoro-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PockitPomodoro-Bridging-Header.h"; sourceTree = "<group>"; };
+		422D77D825F51AE000EADDEF /* PomoDoroTimerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDoroTimerWidget.swift; sourceTree = "<group>"; };
+		422D780325F525EF00EADDEF /* PomoDoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDoroTimerView.swift; sourceTree = "<group>"; };
+		4254F8E325F55E8200DD1538 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		4254F92025F5F1DD00DD1538 /* PomoDoroTimerTextLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomoDoroTimerTextLabel.swift; sourceTree = "<group>"; };
+		4254F93325F637B700DD1538 /* PomoDoroTimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDoroTimerState.swift; sourceTree = "<group>"; };
+		4254F93825F67ABA00DD1538 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		425AAE63262C1D9000382E24 /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		422D77C925F51A3900EADDEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4204606B2712EE4B0052B603 /* SnapKit in Frameworks */,
+				420460682712EE310052B603 /* Defaults in Frameworks */,
+				420460652712EE1D0052B603 /* PockKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		422D77C325F51A3900EADDEF = {
+			isa = PBXGroup;
+			children = (
+				4254F93825F67ABA00DD1538 /* README.md */,
+				422D77CE25F51A3900EADDEF /* PockitPomodoro */,
+				422D77CD25F51A3900EADDEF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		422D77CD25F51A3900EADDEF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				422D77CC25F51A3900EADDEF /* PockitPomodoro.pock */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		422D77CE25F51A3900EADDEF /* PockitPomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				422D77CF25F51A3900EADDEF /* Info.plist */,
+				4254F8E325F55E8200DD1538 /* Media.xcassets */,
+				422D77D625F51A6F00EADDEF /* Sources */,
+			);
+			path = "PockitPomodoro";
+			sourceTree = "<group>";
+		};
+		422D77D625F51A6F00EADDEF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				422D77D825F51AE000EADDEF /* PomoDoroTimerWidget.swift */,
+				422D77E525F51FEF00EADDEF /* View */,
+				425AAE62262C1D7200382E24 /* Extension */,
+				422D77D725F51AE000EADDEF /* PockitPomodoro-Bridging-Header.h */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		422D77E525F51FEF00EADDEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				422D780325F525EF00EADDEF /* PomoDoroTimerView.swift */,
+				4254F92025F5F1DD00DD1538 /* PomoDoroTimerTextLabel.swift */,
+				4254F93325F637B700DD1538 /* PomoDoroTimerState.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		425AAE62262C1D7200382E24 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				425AAE63262C1D9000382E24 /* NSColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		422D77CB25F51A3900EADDEF /* PockitPomodoro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 422D77D225F51A3900EADDEF /* Build configuration list for PBXNativeTarget "PockitPomodoro" */;
+			buildPhases = (
+				422D77C825F51A3900EADDEF /* Sources */,
+				422D77C925F51A3900EADDEF /* Frameworks */,
+				422D77CA25F51A3900EADDEF /* Resources */,
+				422D77E025F51BD400EADDEF /* Run SwiftLint */,
+				4258BA1E261A0B730096B858 /* Debug Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PockitPomodoro";
+			packageProductDependencies = (
+				420460642712EE1D0052B603 /* PockKit */,
+				420460672712EE310052B603 /* Defaults */,
+				4204606A2712EE4B0052B603 /* SnapKit */,
+			);
+			productName = "PockitPomodoro";
+			productReference = 422D77CC25F51A3900EADDEF /* PockitPomodoro.pock */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		422D77C425F51A3900EADDEF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					422D77CB25F51A3900EADDEF = {
+						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
+					};
+				};
+			};
+			buildConfigurationList = 422D77C725F51A3900EADDEF /* Build configuration list for PBXProject "PockitPomodoro" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 422D77C325F51A3900EADDEF;
+			packageReferences = (
+				420460632712EE1D0052B603 /* XCRemoteSwiftPackageReference "pockkit" */,
+				420460662712EE310052B603 /* XCRemoteSwiftPackageReference "Defaults" */,
+				420460692712EE4B0052B603 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
+			productRefGroup = 422D77CD25F51A3900EADDEF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				422D77CB25F51A3900EADDEF /* PockitPomodoro */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		422D77CA25F51A3900EADDEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4254F8E425F55E8200DD1538 /* Media.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		422D77E025F51BD400EADDEF /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint --fix\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		4258BA1E261A0B730096B858 /* Debug Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Debug Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n  echo \"Copying ${PRODUCT_NAME}.pock to destination folder\"\n  cp -r $TARGET_BUILD_DIR/$PRODUCT_NAME.pock ~/Library/Application\\ Support/Pock/Widgets/\n  pid=`pgrep Pock`\n  if [ -n \"$pid\" ]; then\n    echo \"Relaunch Pock.app\"\n    /Applications/Pock.app/Contents/Resources/Relaunch \"$pid\"\n  fi\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		422D77C825F51A3900EADDEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				422D77D925F51AE000EADDEF /* PomoDoroTimerWidget.swift in Sources */,
+				425AAE64262C1D9000382E24 /* NSColor.swift in Sources */,
+				4254F93425F637B700DD1538 /* PomoDoroTimerState.swift in Sources */,
+				422D780425F525EF00EADDEF /* PomoDoroTimerView.swift in Sources */,
+				4254F92125F5F1DD00DD1538 /* PomoDoroTimerTextLabel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		422D77D025F51A3900EADDEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		422D77D125F51A3900EADDEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		422D77D325F51A3900EADDEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "PockitPomodoro/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rohith.PockitPomodoro";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PockitPomodoro/Sources/PockitPomodoro-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WRAPPER_EXTENSION = pock;
+			};
+			name = Debug;
+		};
+		422D77D425F51A3900EADDEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "PockitPomodoro/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rohith.PockitPomodoro";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PockitPomodoro/Sources/PockitPomodoro-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				WRAPPER_EXTENSION = pock;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		422D77C725F51A3900EADDEF /* Build configuration list for PBXProject "PockitPomodoro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				422D77D025F51A3900EADDEF /* Debug */,
+				422D77D125F51A3900EADDEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		422D77D225F51A3900EADDEF /* Build configuration list for PBXNativeTarget "PockitPomodoro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				422D77D325F51A3900EADDEF /* Debug */,
+				422D77D425F51A3900EADDEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		420460632712EE1D0052B603 /* XCRemoteSwiftPackageReference "pockkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pock/pockkit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
+		420460662712EE310052B603 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		420460692712EE4B0052B603 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		420460642712EE1D0052B603 /* PockKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 420460632712EE1D0052B603 /* XCRemoteSwiftPackageReference "pockkit" */;
+			productName = PockKit;
+		};
+		420460672712EE310052B603 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 420460662712EE310052B603 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		4204606A2712EE4B0052B603 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 420460692712EE4B0052B603 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 422D77C425F51A3900EADDEF /* Project object */;
+}
