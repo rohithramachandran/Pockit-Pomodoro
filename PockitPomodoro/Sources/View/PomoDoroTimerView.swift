@@ -91,19 +91,22 @@ public class PomoDoroTimerView: NSView {
         btnCancel.target = self; btnCancel.action = #selector(cancelSelection)
         btnCancel.isBordered = false
 
-        let tapGesture = NSClickGestureRecognizer()
-        tapGesture.target = self
-        tapGesture.action = #selector(tap)
-        tapGesture.allowedTouchTypes = .direct
-        imageView.addGestureRecognizer(tapGesture)
-        imageView.target = self
-        imageView.action = #selector(tap)
+        btn25.bezelStyle = .rounded
+        btn15.bezelStyle = .rounded
+        btn5.bezelStyle = .rounded
+
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(titleView)
+        stackView.addArrangedSubview(btn25)
+        stackView.addArrangedSubview(btn15)
+        stackView.addArrangedSubview(btn5)
+        stackView.addArrangedSubview(btnCancel)
 
         let longPressGesture = NSPressGestureRecognizer()
         longPressGesture.target = self
         longPressGesture.action = #selector(longPress)
         longPressGesture.allowedTouchTypes = .direct
-        imageView.addGestureRecognizer(longPressGesture)
+        self.addGestureRecognizer(longPressGesture)
         
         self.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(tap)))
 
@@ -120,27 +123,30 @@ public class PomoDoroTimerView: NSView {
     }
 
     private func updateViewState() {
-        stackView.views.forEach { $0.removeFromSuperview() }
+        // Hide all views first, then show the relevant ones for the current state
+        imageView.isHidden = true
+        titleView.isHidden = true
+        btn25.isHidden = true
+        btn15.isHidden = true
+        btn5.isHidden = true
+        btnCancel.isHidden = true
         
         switch pockState {
         case .idle:
             imageView.image = NSImage(systemSymbolName: "timer", accessibilityDescription: nil)
-            stackView.addArrangedSubview(imageView)
+            imageView.isHidden = false
             titleView.reset()
         case .selection:
             imageView.image = NSImage(systemSymbolName: "timer", accessibilityDescription: nil)
-            stackView.addArrangedSubview(imageView)
-            btn25.bezelStyle = .rounded
-            btn15.bezelStyle = .rounded
-            btn5.bezelStyle = .rounded
-            stackView.addArrangedSubview(btn25)
-            stackView.addArrangedSubview(btn15)
-            stackView.addArrangedSubview(btn5)
-            stackView.addArrangedSubview(btnCancel)
+            imageView.isHidden = false
+            btn25.isHidden = false
+            btn15.isHidden = false
+            btn5.isHidden = false
+            btnCancel.isHidden = false
         case .running:
             imageView.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
-            stackView.addArrangedSubview(imageView)
-            stackView.addArrangedSubview(titleView)
+            imageView.isHidden = false
+            titleView.isHidden = false
         }
         
         // This causes the touchbar layout to recalculate the size of this view.
