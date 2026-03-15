@@ -8,7 +8,7 @@ import PockKit
 
 class PomoDoroTimerWidget: PKWidget {
     static var identifier: String = "\(PomoDoroTimerWidget.self)"
-    var customizationLabel: String = "Timer"
+    var customizationLabel: String = "Pomodoro"
     var view: NSView!
 
     private var timerView = PomoDoroTimerView()

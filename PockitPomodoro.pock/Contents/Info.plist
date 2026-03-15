@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Timer Widget</string>
+	<string>Pomodoro</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
@@ -43,7 +43,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>11.1</string>
 	<key>NSPrincipalClass</key>
-	<string>PockitPomodoro.TimerWidget</string>
+	<string>PockitPomodoro.PomoDoroTimerWidget</string>
 	<key>PKWidgetAuthor</key>
 	<string>rohith</string>
 </dict>
