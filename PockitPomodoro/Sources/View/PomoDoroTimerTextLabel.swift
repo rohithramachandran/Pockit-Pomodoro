@@ -5,6 +5,9 @@
 
 import Cocoa
 
+// UserDefaults keys for persisting timer state
+private let kEndDateKey = "pockitpomodoro.endDate"
+
 public class PomoDoroTimerTextLabel: NSView {
 
     public enum TextState {
@@ -13,32 +16,131 @@ public class PomoDoroTimerTextLabel: NSView {
 
     private var timer: Timer?
     public var interval: TimeInterval = 1.0
-
     public var textState: TextState = .on
     public var state: PomoDoroTimerState = .stopping
 
-    var timeRemaining: TimeInterval = 0.0
     var onFinish: (() -> Void)? = nil
 
-    public var displayText: String = "25:00" {
-        didSet {
-            setNeedsDisplay(bounds)
-        }
+    public var displayText: String = "" {
+        didSet { setNeedsDisplay(bounds) }
     }
     public var textColor: NSColor = .headerTextColor
     public var font: NSFont = NSFont.monospacedDigitSystemFont(ofSize: 14, weight: .medium)
-    public var padding: CGFloat = 2
+
+    // Persist the absolute end time so screen-sleep / view-recreate don't reset the timer
+    private var endDate: Date? {
+        get { UserDefaults.standard.object(forKey: kEndDateKey) as? Date }
+        set {
+            if let date = newValue {
+                UserDefaults.standard.set(date, forKey: kEndDateKey)
+            } else {
+                UserDefaults.standard.removeObject(forKey: kEndDateKey)
+            }
+        }
+    }
 
     override public init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         self.wantsLayer = true
-        self.displayText = "25:00"
     }
 
     @available(*, unavailable)
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Public API
+
+    public func start(minutes: Int) {
+        let end = Date().addingTimeInterval(TimeInterval(minutes * 60))
+        endDate = end
+        startCounting()
+    }
+
+    /// Restore from persisted state — returns true if there was an active timer
+    @discardableResult
+    public func restoreIfNeeded() -> Bool {
+        guard let end = endDate else { return false }
+        let remaining = end.timeIntervalSinceNow
+        if remaining <= 0 {
+            // Timer already done while screen was off
+            endDate = nil
+            displayText = "00:00"
+            state = .stopping
+            return false
+        }
+        startCounting()
+        return true
+    }
+
+    public func stop() {
+        endDate = nil
+        clearTimer()
+        state = .stopping
+        // Keep last displayed value
+    }
+
+    public func reset() {
+        endDate = nil
+        clearTimer()
+        displayText = ""
+        state = .stopping
+    }
+
+    public func showIdleDuration(minutes: Int) {
+        let t = TimeInterval(minutes * 60)
+        displayText = PomoDoroTimerTextLabel.formatString(time: t)
+        state = .stopping
+    }
+
+    public var isRunning: Bool { state == .running }
+
+    // MARK: - Private
+
+    private func startCounting() {
+        clearTimer()
+        state = .running
+        // Immediately update display
+        tick()
+        timer = Timer.scheduledTimer(
+            timeInterval: interval,
+            target: self,
+            selector: #selector(timerFired),
+            userInfo: nil,
+            repeats: true
+        )
+        if let t = timer {
+            RunLoop.main.add(t, forMode: .common)
+        }
+    }
+
+    private func tick() {
+        guard let end = endDate else { return }
+        let remaining = max(0, end.timeIntervalSinceNow)
+        displayText = PomoDoroTimerTextLabel.formatString(time: remaining)
+    }
+
+    public func clearTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+
+    @objc private func timerFired(_ sender: Timer) {
+        guard let end = endDate else { stop(); return }
+        let remaining = end.timeIntervalSinceNow
+
+        if remaining <= 0 {
+            displayText = "00:00"
+            stop()
+            DispatchQueue.main.async { self.onFinish?() }
+            return
+        }
+
+        let string = PomoDoroTimerTextLabel.formatString(time: remaining)
+        DispatchQueue.main.async { self.displayText = string }
+    }
+
+    // MARK: - Drawing
 
     private static func formatString(time: TimeInterval) -> String {
         let t = max(0, time)
@@ -58,69 +160,5 @@ public class PomoDoroTimerTextLabel: NSView {
         let x = (bounds.width - size.width) / 2
         let y = (bounds.height - size.height) / 2
         string.draw(at: NSPoint(x: x, y: y), withAttributes: attrs)
-    }
-
-    public func start(minutes: Int) {
-        self.timeRemaining = TimeInterval(minutes * 60)
-        clearTimer()
-        self.displayText = PomoDoroTimerTextLabel.formatString(time: timeRemaining)
-        self.textState = .on
-        timer = Timer.scheduledTimer(
-            timeInterval: interval,
-            target: self,
-            selector: #selector(update(_:)),
-            userInfo: nil,
-            repeats: true
-        )
-        if let timer = timer {
-            RunLoop.main.add(timer, forMode: .common)
-        }
-        self.state = .running
-    }
-
-    public func stop() {
-        clearTimer()
-        self.displayText = PomoDoroTimerTextLabel.formatString(time: timeRemaining)
-        self.state = .stopping
-    }
-
-    public func reset() {
-        self.timeRemaining = 0.0
-        clearTimer()
-        self.displayText = "25:00"
-        self.state = .stopping
-    }
-
-    /// Shows the selected duration in idle mode without starting a timer
-    public func showIdleDuration(minutes: Int) {
-        clearTimer()
-        self.timeRemaining = TimeInterval(minutes * 60)
-        self.displayText = PomoDoroTimerTextLabel.formatString(time: self.timeRemaining)
-        self.state = .stopping
-    }
-
-    public func clearTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-
-    @objc
-    func update(_ sender: Timer) {
-        timeRemaining -= 1
-
-        if timeRemaining <= 0 {
-            timeRemaining = 0
-            DispatchQueue.main.async {
-                self.displayText = PomoDoroTimerTextLabel.formatString(time: 0)
-            }
-            stop()
-            onFinish?()
-            return
-        }
-
-        let string = PomoDoroTimerTextLabel.formatString(time: timeRemaining)
-        DispatchQueue.main.async {
-            self.displayText = string
-        }
     }
 }
