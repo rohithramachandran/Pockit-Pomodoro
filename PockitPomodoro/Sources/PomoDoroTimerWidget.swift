@@ -5,6 +5,7 @@
 
 import AppKit
 import PockKit
+
 class PomoDoroTimerWidget: PKWidget {
     static var identifier: String = "\(PomoDoroTimerWidget.self)"
     var customizationLabel: String = "Pomodoro"
@@ -15,7 +16,6 @@ class PomoDoroTimerWidget: PKWidget {
     required init() {
         view = timerView
     }
-
 }
 
 extension PomoDoroTimerWidget: PKScreenEdgeMouseDelegate {
