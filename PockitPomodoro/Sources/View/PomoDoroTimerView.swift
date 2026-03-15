@@ -74,6 +74,11 @@ public class PomoDoroTimerView: NSView {
         stackView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview().inset(NSEdgeInsets(top: 0, left: 4, bottom: 0, right: 4))
         }
+        
+        // Touch Bar widgets often need a minimum or specifically defined width to not collapse implicitly
+        snp.makeConstraints { maker in
+            maker.width.greaterThanOrEqualTo(68)
+        }
 
         imageView.snp.makeConstraints { maker in
             maker.width.equalTo(20)
@@ -140,10 +145,6 @@ public class PomoDoroTimerView: NSView {
         
         // This causes the touchbar layout to recalculate the size of this view.
         self.invalidateIntrinsicContentSize()
-    }
-
-    override public var intrinsicContentSize: NSSize {
-        return stackView.fittingSize
     }
 
     override public func touchesBegan(with event: NSEvent) {
