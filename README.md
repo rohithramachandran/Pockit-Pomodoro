@@ -1,4 +1,4 @@
-# 🍅 PockitPomodoro
+# 🍅 Pock Pomodoro Widget
 
 An open-source Pomodoro Timer widget for [Pock](https://github.com/pock/pock) — a powerful widgets manager for the Mac Touch Bar.
 
