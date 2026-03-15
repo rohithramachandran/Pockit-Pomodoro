@@ -1,30 +1,122 @@
-# PockitPomodoro
+# 🍅 PockitPomodoro
 
-PockitPomodoro is an open-source Pomodoro Timer widget plugin for [Pock](https://github.com/pock/pock). It adds a fully functional Pomodoro timer directly to your Mac's Touch Bar!
+An open-source Pomodoro Timer widget for [Pock](https://github.com/pock/pock) — a powerful widgets manager for the Mac Touch Bar.
 
-## Features
-- **Selection Mode:** Easily choose between 25-minute, 15-minute, and 5-minute intervals.
-- **Countdown Display:** Live countdown directly on your Touch Bar.
-- **Quick Actions:** Tap to pause/resume or long-press to reset the timer.
+[![Github issues](https://img.shields.io/github/issues/rohithramachandran/Pockit-Pomodoro)](https://github.com/rohithramachandran/Pockit-Pomodoro/issues)
+[![Github stars](https://img.shields.io/github/stars/rohithramachandran/Pockit-Pomodoro)](https://github.com/rohithramachandran/Pockit-Pomodoro/stargazers)
+[![Github top language](https://img.shields.io/github/languages/top/rohithramachandran/Pockit-Pomodoro)](https://github.com/rohithramachandran/Pockit-Pomodoro/)
 
-## How to Build
-To build the project from source, you'll need Xcode installed on your Mac.
+---
 
-1. Clone the repository and navigate to the root directory:
+## ✨ Features
+
+- 🕐 **Customizable Durations** — Choose between 10, 20, or 30 minute sessions directly from the Touch Bar
+- ⏱ **Live Countdown** — Real-time countdown display right on your Touch Bar
+- 🔔 **Completion Alert** — 3 beep sounds when the timer finishes so you never miss it
+- 🍅 **Multiple Timers** — Add multiple Pomodoro widgets side by side for tracking parallel tasks
+- 🎨 **Native macOS Design** — Built with PockKit for a seamless Touch Bar experience
+
+---
+
+## 🎮 How to Use
+
+### Basic Controls
+
+| Touch | State | Action |
+|-------|-------|--------|
+| **Tap** | Idle | Start the timer with the currently selected duration |
+| **Tap** | Running | Stop the timer |
+| **Long Press** | Idle | Cycle to next duration: `10 min → 20 min → 30 min → 10 min...` |
+| **Long Press** | Running | Stop and reset the timer |
+
+### Reading the Widget
+
+- **Idle** — Shows a ⏱ timer icon + the selected duration (e.g. `10:00`). This tells you what will start when you tap.
+- **Running** — Shows a ⏹ stop icon + live countdown (e.g. `09:42`)
+- **Finished** — 3 beeps play and the widget resets to idle automatically
+
+---
+
+## 🔀 Using Multiple Timers
+
+Pock supports adding the same widget **multiple times**, making it easy to track parallel tasks or separate work/break timers side by side.
+
+### Steps to Add Multiple Pomodoro Timers
+
+1. Open Pock and click **Customize Pock…** from the menu bar
+2. In the customization panel, locate the **Pomodoro** widget
+3. Drag a **Pomodoro** widget into your Touch Bar
+4. Drag **another Pomodoro** widget next to the first one — Pock allows this!
+5. Each widget instance is **fully independent** — different durations, different countdowns
+
+### Example Setup
+
+```
+| 🍅 10:00 | 🍅 20:00 | ... other widgets ... |
+```
+
+You could use one timer for a focused work sprint and another as a break reminder, all running independently in your Touch Bar.
+
+---
+
+## 📦 Installation
+
+### Download (Recommended)
+1. Download the latest `PockitPomodoro.pock` from [Releases](https://github.com/rohithramachandran/Pockit-Pomodoro/releases)
+2. Double-click the `.pock` file to install it into Pock
+3. Open Pock → **Customize Pock…** and drag the **Pomodoro** widget into your Touch Bar
+
+### Build from Source
+1. Clone the repository:
    ```bash
-   cd PockitPomodoro
+   git clone https://github.com/rohithramachandran/Pockit-Pomodoro.git
+   cd Pockit-Pomodoro
    ```
-2. Build the project using `xcodebuild`:
+2. Build with Xcode:
    ```bash
    xcodebuild build -scheme PockitPomodoro -project PockitPomodoro.xcodeproj
    ```
-3. Once the build succeeds, the output `.pock` widget plugin will be located in the derived data or local Products directory. Double-click the `.pock` bundle to install it into Pock.
+3. The compiled `.pock` bundle will appear in your project directory. Double-click to install.
 
-## Changing Behavior
-The logic for the widget is written in Swift and is structured using the PockKit framework.
+---
 
-To change the behavior of the widget, you can modify the source files located in `PockitPomodoro/Sources/`:
+## 🔧 Changing Behavior
 
-- `PomoDoroTimerWidget.swift`: The main entry point for the widget plugin. This file registers the widget with Pock and handles Touch Bar interactions (e.g. tracking taps and long presses).
-- `PomoDoroTimerView.swift`: Handles the visual stack on the Touch Bar. To change the intervals or the layout of the selection buttons, you can edit the initialization and `updateViewState()` method here.
-- `PomoDoroTimerTextLabel.swift`: Contains the countdown logic and formatting for the timer string. If you want to modify how the time is calculated or formatted, this is the file to change.
+The widget is written in Swift using PockKit. Key source files:
+
+| File | Purpose |
+|------|---------|
+| `PomoDoroTimerWidget.swift` | Widget entry point — registers with Pock, handles screen edge interactions |
+| `PomoDoroTimerView.swift` | Main view — controls state machine (idle/running) and gesture handling. **Edit `durations` array here to change available intervals.** |
+| `PomoDoroTimerTextLabel.swift` | Countdown display — handles timer logic and text rendering |
+
+### Change Available Durations
+
+Open `PomoDoroTimerView.swift` and edit the `durations` array:
+
+```swift
+// Default: 10, 20, 30 minutes
+private let durations: [Int] = [10, 20, 30]
+
+// Example: Add a 45-minute option
+private let durations: [Int] = [10, 20, 30, 45]
+
+// Example: Classic Pomodoro (25 min work + 5 min break)
+private let durations: [Int] = [25, 5]
+```
+
+After editing, rebuild and reinstall the `.pock` bundle.
+
+---
+
+## 🛠 Requirements
+
+- macOS 11.0+
+- [Pock](https://pock.app) installed
+- A MacBook with a Touch Bar
+
+---
+
+## 📄 License
+
+MIT — see [LICENSE](LICENSE)
