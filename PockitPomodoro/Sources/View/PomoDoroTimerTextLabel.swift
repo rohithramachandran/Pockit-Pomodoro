@@ -91,6 +91,14 @@ public class PomoDoroTimerTextLabel: NSView {
         self.state = .stopping
     }
 
+    /// Shows the selected duration in idle mode without starting a timer
+    public func showIdleDuration(minutes: Int) {
+        clearTimer()
+        self.timeRemaining = TimeInterval(minutes * 60)
+        self.displayText = PomoDoroTimerTextLabel.formatString(time: self.timeRemaining)
+        self.state = .stopping
+    }
+
     public func clearTimer() {
         timer?.invalidate()
         timer = nil

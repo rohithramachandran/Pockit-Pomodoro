@@ -12,6 +12,11 @@ public class PomoDoroTimerView: NSView {
     public var didTap: (() -> Void)?
     public var didLongPress: (() -> Void)?
 
+    // Available durations to cycle through
+    private let durations: [Int] = [10, 20, 30]
+    private var durationIndex: Int = 0
+    private var selectedMinutes: Int { durations[durationIndex] }
+
     public let imageView: NSImageView = {
         let imageView = NSImageView(frame: .zero)
         imageView.wantsLayer = true
@@ -47,12 +52,10 @@ public class PomoDoroTimerView: NSView {
         addSubview(imageView)
         addSubview(titleView)
 
-        imageView.image = NSImage(systemSymbolName: "timer", accessibilityDescription: nil)
-
         imageView.snp.makeConstraints { maker in
-            maker.width.equalTo(20)
+            maker.width.equalTo(18)
             maker.top.bottom.equalToSuperview()
-            maker.left.equalToSuperview()
+            maker.left.equalToSuperview().offset(2)
         }
         titleView.snp.makeConstraints { maker in
             maker.left.equalTo(imageView.snp.right).offset(2)
@@ -60,12 +63,15 @@ public class PomoDoroTimerView: NSView {
             maker.height.equalTo(30)
         }
         snp.makeConstraints { maker in
-            maker.width.equalTo(68)
+            maker.width.equalTo(72)
         }
 
         titleView.onFinish = { [weak self] in
-            self?.stop()
+            self?.handleFinished()
         }
+
+        // Start by showing idle with selected duration
+        setIdleState()
 
         let tapGesture = NSClickGestureRecognizer()
         tapGesture.target = self
@@ -85,29 +91,44 @@ public class PomoDoroTimerView: NSView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func start(minutes: Int = 25) {
-        titleView.start(minutes: minutes)
+    // MARK: - State
+
+    private func setIdleState() {
+        imageView.image = NSImage(systemSymbolName: "timer", accessibilityDescription: nil)
+        // Show selected duration while idle so user knows what will start
+        titleView.showIdleDuration(minutes: selectedMinutes)
+        isRunning = false
+    }
+
+    func start() {
+        titleView.start(minutes: selectedMinutes)
         imageView.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
         isRunning = true
     }
 
     func stop() {
         titleView.stop()
-        imageView.image = NSImage(systemSymbolName: "timer", accessibilityDescription: nil)
-        isRunning = false
+        setIdleState()
     }
 
-    func reset() {
-        stop()
-        titleView.reset()
+    private func handleFinished() {
+        setIdleState()
+        // Play 3 beeps spaced 0.5s apart
+        for i in 0..<3 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
+                NSSound.beep()
+            }
+        }
     }
+
+    // MARK: - Gestures
 
     @objc
     func tap(_ sender: NSGestureRecognizer?) {
         if isRunning {
             stop()
         } else {
-            start(minutes: 25)
+            start()
         }
         self.layer?.backgroundColor = NSColor.touchBarBackgroundColor.cgColor
         didTap?()
@@ -115,7 +136,15 @@ public class PomoDoroTimerView: NSView {
 
     @objc
     func longPress(_ sender: NSGestureRecognizer?) {
-        reset()
+        guard let gesture = sender, gesture.state == .began else { return }
+        if !isRunning {
+            // Cycle to next duration
+            durationIndex = (durationIndex + 1) % durations.count
+            setIdleState()
+        } else {
+            // Long press while running = stop & reset
+            stop()
+        }
         self.layer?.backgroundColor = NSColor.touchBarBackgroundColor.cgColor
         didLongPress?()
     }
